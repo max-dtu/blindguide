@@ -15,7 +15,8 @@ on:
 jobs:
   web-tests:
     name: Rule tests and accessibility audit
-    runs-on: ubuntu-latest
+    # Pinned: ubuntu-latest is now 26.04, which Playwright 1.56.1 does not support.
+    runs-on: ubuntu-24.04
     defaults:
       run:
         working-directory: web
