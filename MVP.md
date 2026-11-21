@@ -7,16 +7,18 @@ Prove that an audio-first assistant can help a blind or low-vision person with e
 
 ## Supported devices
 
-The MVP targets **iPhone first**. The phone is the compute hub. Glasses are a peripheral that provides camera, microphone and audio. Android and Meta glasses follow after the iOS MVP passes its release gates.
+The MVP targets **web first**, then iOS, then Android and Meta glasses. The phone (or browser device) is the compute hub. Glasses are a peripheral that provides camera, microphone and audio.
 
 | Configuration | Camera | Microphone | Audio out | Status |
 |---|---|---|---|---|
-| **iPhone** (first target) | Phone camera | Phone mic | Phone speaker, headphones, or bone conduction / open-ear | **MVP** |
+| **Web app** (first target) | Device camera via browser | Device mic via browser | Device speaker, headphones | **MVP, first** |
+| **iPhone** | Phone camera | Phone mic | Phone speaker, headphones, or bone conduction / open-ear | Next (after web) |
 | **Android phone** | Phone camera | Phone mic | Phone speaker, headphones, or bone conduction / open-ear | Post-MVP |
 | **Meta smart glasses** | Glasses camera (via phone companion link) | Glasses mic | Glasses open-ear speakers | Post-MVP |
 
 Notes:
-- **iOS first:** the primary user (Maya) uses VoiceOver on an iPhone, so the iOS app is the reference implementation. It must work fully with VoiceOver.
+- **Web first:** the web app runs in a browser on any device, so it is the fastest way to test the shared rules with real users. It must work fully with a screen reader and keyboard, and pass automated accessibility checks in CI.
+- **iOS next:** the primary user (Maya) uses VoiceOver on an iPhone, so the iOS app is the reference for VoiceOver behavior. It must work fully with VoiceOver. The iOS app work already committed is paused, and its failing accessibility check (Dynamic Type on the settings toggle) is open.
 - **Android** (after iOS) must support TalkBack. The shared core should be kept platform-neutral so this is an adapter job, not a rewrite.
 - **Meta glasses** (after Android): the phone runs the app and connects to the glasses through the vendor's device SDK. Glasses-specific input (tap, voice) maps to the same commands as the phone. The glasses SDK's exact capabilities (camera frame rate, streaming latency, mic access) must be verified before that milestone.
 - **Other devices** (other smart glasses, watches, dedicated hardware) are out of scope.

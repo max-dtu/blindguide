@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BlindGuide</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header>
+      <h1>BlindGuide</h1>
+      <p>An audio-first assistant. Answers are spoken and shown on screen.</p>
+    </header>
+
+    <main id="main">
+      <section aria-labelledby="ask-heading">
+        <h2 id="ask-heading">Ask</h2>
+        <div class="button-row">
+          <button type="button" id="task-read-text">Read text</button>
+          <button type="button" id="task-what-is-this">What is this?</button>
+          <button type="button" id="task-scene">What's around me?</button>
+        </div>
+      </section>
+
+      <section aria-labelledby="help-heading">
+        <h2 id="help-heading">Help</h2>
+        <button type="button" id="call-human">Call a human</button>
+      </section>
+
+      <section aria-labelledby="settings-heading">
+        <h2 id="settings-heading">Settings</h2>
+        <div class="field">
+          <label for="verbosity">How much to say</label>
+          <select id="verbosity">
+            <option value="silent">Silent</option>
+            <option value="alertsOnly">Alerts only</option>
+            <option value="normal" selected>Normal</option>
+            <option value="descriptive">Descriptive</option>
+          </select>
+        </div>
+        <div class="field checkbox">
+          <input type="checkbox" id="cloud-enabled" />
+          <label for="cloud-enabled">Allow the cloud when needed</label>
+        </div>
+      </section>
+
+      <section aria-labelledby="output-heading">
+        <h2 id="output-heading">Latest response</h2>
+        <p id="alert-region" role="alert" class="alert"></p>
+        <p id="output" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
