@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Secrets
+.env
+.env.*
+*.key
+
+# Build / deps
+node_modules/
+build/
+dist/
+__pycache__/
+*.pyc
+.venv/
+
+# Captured media / test recordings (privacy)
+recordings/
+*.mp4
+*.wav
