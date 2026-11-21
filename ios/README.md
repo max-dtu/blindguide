@@ -12,7 +12,8 @@ The iOS app is the first target (see [MVP.md](../MVP.md)). It is split in two:
 - The XCTest suite in `BlindGuideCore/Tests/` is written but has not been run here, because this machine has only the Command Line Tools and not full Xcode. Run it with `swift test` in Xcode or on a machine with full Xcode installed.
 - `BlindGuide/BlindGuide/` contains the SwiftUI app sources. They compile against `BlindGuideCore` with the macOS SDK in Swift 5 and Swift 6 modes. They have not been built for iOS or run on a device.
 - The app has a voice-ready screen with the perception actions, a verbosity setting, a cloud toggle, and a "Call a human" placeholder. Perception returns "I'm not sure" until an on-device model is connected (`VisionEngine.swift`).
-- `BlindGuide/project.yml` is an XcodeGen spec that generates the `.xcodeproj`. It has not been run yet.
+- `BlindGuide/project.yml` is an XcodeGen spec. `BlindGuide/BlindGuide.xcodeproj` is generated from it and is committed so the project opens directly. Regenerate it after changing `project.yml`.
+- The project references `BlindGuideCore` by relative path. It has not been compiled with the iOS SDK, because this machine has no full Xcode.
 
 ## Set up the app target (needs full Xcode)
 
