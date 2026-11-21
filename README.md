@@ -9,3 +9,4 @@ An audio-first AI assistant for blind and low-vision people. It runs on a phone 
 ## Docs
 - [User stories](USER_STORIES.md): personas, epics, priorities and the MVP scope.
 - [MVP](MVP.md): first release scope, supported devices (iPhone, Android, Meta glasses), architecture and release gates.
+- [iOS](ios/README.md): the iOS app, its shared core package, and setup steps.
