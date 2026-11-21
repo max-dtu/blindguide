@@ -40,3 +40,20 @@ jobs:
             -destination 'generic/platform=iOS Simulator' \
             CODE_SIGNING_ALLOWED=NO \
             build
+
+  ui-tests:
+    name: Launch app in simulator and run UI tests
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ios/BlindGuide
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run UI tests on an iPhone simulator
+        run: |
+          xcodebuild \
+            -project BlindGuide.xcodeproj \
+            -scheme BlindGuide \
+            -destination 'platform=iOS Simulator,name=iPhone 16,OS=latest' \
+            CODE_SIGNING_ALLOWED=NO \
+            test

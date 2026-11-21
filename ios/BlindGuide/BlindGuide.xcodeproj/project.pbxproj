@@ -12,16 +12,29 @@
 		31FE0E0F3AADA08FDFFCAC58 /* VisionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABE03533C01B16953555A02 /* VisionEngine.swift */; };
 		6B8BE822182805B48205117C /* BlindGuideCore in Frameworks */ = {isa = PBXBuildFile; productRef = B775350CD59D70BE118676F7 /* BlindGuideCore */; };
 		D73E1B88E8B6B59CF89CF29E /* AssistantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C18D54D8E7507BE066F8A35 /* AssistantModel.swift */; };
+		F04A4FC4D98D556C4618C9E2 /* LaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBCBA7DF2066C2C6E086C8D /* LaunchTests.swift */; };
 		F16049B564D1845984CEE9D8 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0245A15CD22830F9B09D31A /* Speaker.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		41588EEC08DBFAF182DD103F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8695037D1E002FB404CE52AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D15C4B67E1262973EB83630D;
+			remoteInfo = BlindGuide;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		2CBCBA7DF2066C2C6E086C8D /* LaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTests.swift; sourceTree = "<group>"; };
 		3C18D54D8E7507BE066F8A35 /* AssistantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistantModel.swift; sourceTree = "<group>"; };
 		7DA9B8AA34D977950AC928A0 /* BlindGuide.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BlindGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B33688E880DD23550BEAE46 /* BlindGuideCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = BlindGuideCore; path = ../BlindGuideCore; sourceTree = SOURCE_ROOT; };
 		92A92B1EABF4587E25B8A4E8 /* BlindGuideApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlindGuideApp.swift; sourceTree = "<group>"; };
 		9ABE03533C01B16953555A02 /* VisionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionEngine.swift; sourceTree = "<group>"; };
 		A0245A15CD22830F9B09D31A /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
+		A56205ED9D3CAD5AC45628F9 /* BlindGuideUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BlindGuideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3926CC4985C24BB808C3ACC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F7AB577E1191B70F65DAA5C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C5ECD2D910F6B4346E52462 /* BlindGuideUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2CBCBA7DF2066C2C6E086C8D /* LaunchTests.swift */,
+			);
+			path = BlindGuideUITests;
+			sourceTree = "<group>";
+		};
 		680027E51D3E1AFE9A2931D1 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				779AA7BC4F25E2CF614B96C6 /* BlindGuide */,
+				4C5ECD2D910F6B4346E52462 /* BlindGuideUITests */,
 				680027E51D3E1AFE9A2931D1 /* Packages */,
 				FAD89A4CBAF18915B33B2A08 /* Products */,
 			);
@@ -72,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				7DA9B8AA34D977950AC928A0 /* BlindGuide.app */,
+				A56205ED9D3CAD5AC45628F9 /* BlindGuideUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +102,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		656A33996132F26A35502C79 /* BlindGuideUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE486CF434F201EE58C699DF /* Build configuration list for PBXNativeTarget "BlindGuideUITests" */;
+			buildPhases = (
+				52A1A023E112E8EF729B1633 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				050F1EC94DEB47B933DE5EB4 /* PBXTargetDependency */,
+			);
+			name = BlindGuideUITests;
+			packageProductDependencies = (
+			);
+			productName = BlindGuideUITests;
+			productReference = A56205ED9D3CAD5AC45628F9 /* BlindGuideUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		D15C4B67E1262973EB83630D /* BlindGuide */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02BCE956FB0168A69D879191 /* Build configuration list for PBXNativeTarget "BlindGuide" */;
@@ -107,6 +148,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
+					656A33996132F26A35502C79 = {
+						TestTargetID = D15C4B67E1262973EB83630D;
+					};
 				};
 			};
 			buildConfigurationList = 1ECE12019475A2788FB15AF5 /* Build configuration list for PBXProject "BlindGuide" */;
@@ -127,6 +171,7 @@
 			projectRoot = "";
 			targets = (
 				D15C4B67E1262973EB83630D /* BlindGuide */,
+				656A33996132F26A35502C79 /* BlindGuideUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -144,9 +189,59 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52A1A023E112E8EF729B1633 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F04A4FC4D98D556C4618C9E2 /* LaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		050F1EC94DEB47B933DE5EB4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D15C4B67E1262973EB83630D /* BlindGuide */;
+			targetProxy = 41588EEC08DBFAF182DD103F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		12A2F1A3B2B0A75BB11EBEFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.blindguide.BlindGuideUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BlindGuide;
+			};
+			name = Release;
+		};
+		2ED34DA4FB9C91E69DFFB16F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.blindguide.BlindGuideUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BlindGuide;
+			};
+			name = Debug;
+		};
 		38FE6DC72F4AF5BB590337C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -319,6 +414,15 @@
 			buildConfigurations = (
 				BC09EC0067ECCD97DACFD518 /* Debug */,
 				38FE6DC72F4AF5BB590337C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CE486CF434F201EE58C699DF /* Build configuration list for PBXNativeTarget "BlindGuideUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2ED34DA4FB9C91E69DFFB16F /* Debug */,
+				12A2F1A3B2B0A75BB11EBEFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
