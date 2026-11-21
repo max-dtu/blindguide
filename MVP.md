@@ -7,19 +7,19 @@ Prove that an audio-first assistant can help a blind or low-vision person with e
 
 ## Supported devices
 
-The MVP supports three input and output configurations. The phone is always the compute hub. Glasses are a peripheral that provides camera, microphone and audio.
+The MVP targets **iPhone first**. The phone is the compute hub. Glasses are a peripheral that provides camera, microphone and audio. Android and Meta glasses follow after the iOS MVP passes its release gates.
 
 | Configuration | Camera | Microphone | Audio out | Status |
 |---|---|---|---|---|
-| **iPhone** (primary) | Phone camera | Phone mic | Phone speaker, headphones, or bone conduction / open-ear | MVP |
-| **Android phone** | Phone camera | Phone mic | Phone speaker, headphones, or bone conduction / open-ear | MVP |
-| **Meta smart glasses** | Glasses camera (via phone companion link) | Glasses mic | Glasses open-ear speakers | MVP, after the phone configurations work |
+| **iPhone** (first target) | Phone camera | Phone mic | Phone speaker, headphones, or bone conduction / open-ear | **MVP** |
+| **Android phone** | Phone camera | Phone mic | Phone speaker, headphones, or bone conduction / open-ear | Post-MVP |
+| **Meta smart glasses** | Glasses camera (via phone companion link) | Glasses mic | Glasses open-ear speakers | Post-MVP |
 
 Notes:
-- **iPhone first:** the primary user (Maya) uses VoiceOver on an iPhone, so the iOS experience is the reference implementation.
-- **Android** must support TalkBack from the start.
-- **Meta glasses:** the phone runs the app and connects to the glasses through the vendor's device SDK. Glasses-specific input (tap, voice) maps to the same commands as the phone. The glasses SDK's exact capabilities (camera frame rate, streaming latency, mic access) must be verified before committing to the glasses milestone.
-- **Other devices** (other smart glasses, watches, dedicated hardware) are out of scope for the MVP.
+- **iOS first:** the primary user (Maya) uses VoiceOver on an iPhone, so the iOS app is the reference implementation. It must work fully with VoiceOver.
+- **Android** (after iOS) must support TalkBack. The shared core should be kept platform-neutral so this is an adapter job, not a rewrite.
+- **Meta glasses** (after Android): the phone runs the app and connects to the glasses through the vendor's device SDK. Glasses-specific input (tap, voice) maps to the same commands as the phone. The glasses SDK's exact capabilities (camera frame rate, streaming latency, mic access) must be verified before that milestone.
+- **Other devices** (other smart glasses, watches, dedicated hardware) are out of scope.
 
 ## Architecture (MVP level)
 
@@ -35,7 +35,8 @@ Notes:
    │ Shared core               │
    │  - Safety layer (on-device) │  obstacle / crossing alerts, latency-critical
    │  - Interaction (voice, verbosity, interruption)
-   │  - Cloud reasoning (scene, text, object)  │  with "not sure" fallback
+   │  - On-device inference (default for scene, text, object)
+   │  - Cloud escalation (only when necessary, see below)
    │  - Privacy controls (no storage by default)
    └────────────┬─────────────┘
                 │
@@ -43,10 +44,12 @@ Notes:
 ```
 
 Design rules:
-1. **Safety alerts never depend on the network.** They run on the phone, under the latency target (300 ms).
-2. **Cloud is for reasoning, not for hazards.** Descriptions can take up to 1.5 s and can use the network.
-3. **Device differences stay in the adapter.** The core logic, prompts, verbosity rules and privacy rules are the same on every platform.
-4. **Everything works without the screen.** No feature may require visual UI as its only path.
+1. **Local inference first.** All perception (text reading, object identification, scene description) runs on the device by default. Images and audio leave the phone only when local inference cannot answer and the user allows it.
+2. **Cloud only when necessary.** Escalate to cloud only when: the local model reports low confidence, the task needs knowledge the local model lacks, or the user explicitly asks for a second opinion. Every escalation is announced ("Checking with the cloud, one moment") and can be declined. Cloud requests send only the frame or clip needed for the question, never a stream.
+3. **Safety alerts never depend on the network.** They run on the phone, under the latency target (300 ms).
+4. **Device differences stay in the adapter.** The core logic, prompts, verbosity rules and privacy rules are the same on every platform.
+5. **Everything works without the screen.** No feature may require visual UI as its only path.
+6. **Offline core.** Safety alerts, text reading and object identification must work with no network at all.
 
 ## MVP scope
 
@@ -88,17 +91,19 @@ Design rules:
 
 The MVP is not released to real users until all of these hold:
 
-1. **Latency:** obstacle and crossing alerts meet the 300 ms target on each device configuration, measured on the device.
+1. **Latency:** obstacle and crossing alerts meet the 300 ms target on the iPhone, measured on the device.
+   - **Local-first check:** the offline core (text reading, object identification) is measured with no network and meets its targets.
 2. **Honesty:** every answer path can produce "I'm not sure," and testers confirm the assistant does not guess on text and object tests.
 3. **Privacy:** no video or audio is stored by default. A check confirms this on each platform.
 4. **Safety review:** a written review of the obstacle and crossing features, done with blind and low-vision co-design participants.
 5. **Accessibility:** the full core flow works with VoiceOver on iOS, TalkBack on Android, and no screen on any configuration.
-6. **Field test:** co-design participants complete the core tasks on at least one device of each configuration.
+6. **Field test:** co-design participants complete the core tasks on iPhone.
 
 ## Open questions
 
-- Which cloud model and provider will handle scene, text and object reasoning, and what is the data-handling policy?
-- Which Meta glasses model and SDK version are targeted, and what are its camera and mic limits?
-- What on-device detection model will meet the latency target for obstacles and crossings?
+- Which on-device models (vision, OCR, speech) run fast enough on the target iPhones, and what is the minimum supported iOS version?
+- Which tasks, if any, should escalate to cloud by default, and which cloud provider and data-handling policy apply to escalations?
+- What on-device detection model will meet the 300 ms latency target for obstacles and crossings?
+- Which Meta glasses model and SDK version are targeted for the post-MVP milestone, and what are its camera and mic limits?
 - Who is in the co-design group, and how are they recruited and compensated?
 - What is the legal and liability position for a product that supports mobility decisions?
