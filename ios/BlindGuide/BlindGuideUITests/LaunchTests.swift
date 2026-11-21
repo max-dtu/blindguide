@@ -25,7 +25,11 @@ final class LaunchTests: XCTestCase {
         app.launch()
 
         XCTAssertTrue(app.buttons["Read text"].waitForExistence(timeout: 10))
-        try app.performAccessibilityAudit()
+        // Print each issue on its own "error:" line so CI can show it.
+        try app.performAccessibilityAudit { issue in
+            print("error: AUDIT \(issue.auditType) \(issue.compactDescription) | \(issue.detailedDescription) | element=\(String(describing: issue.element))")
+            return false
+        }
     }
 
     func testReadTextActionDoesNotCrash() throws {
