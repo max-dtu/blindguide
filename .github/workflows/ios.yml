@@ -1,0 +1,42 @@
+name: iOS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ios/**"
+      - ".github/workflows/ios.yml"
+  pull_request:
+    paths:
+      - "ios/**"
+      - ".github/workflows/ios.yml"
+  workflow_dispatch:
+
+jobs:
+  core-tests:
+    name: Core package tests
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ios/BlindGuideCore
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run BlindGuideCore tests
+        run: swift test
+
+  app-build:
+    name: Build iOS app for simulator
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ios/BlindGuide
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build BlindGuide for iOS Simulator
+        run: |
+          xcodebuild \
+            -project BlindGuide.xcodeproj \
+            -scheme BlindGuide \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO \
+            build
