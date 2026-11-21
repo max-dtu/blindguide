@@ -18,6 +18,16 @@ final class LaunchTests: XCTestCase {
         XCTAssertTrue(app.buttons["Call a human"].exists)
     }
 
+    /// Runs Apple's accessibility audit on the main screen (iOS 17+).
+    /// It flags missing labels, small tap targets, contrast and clipping problems.
+    func testMainScreenPassesAccessibilityAudit() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        XCTAssertTrue(app.buttons["Read text"].waitForExistence(timeout: 10))
+        try app.performAccessibilityAudit()
+    }
+
     func testReadTextActionDoesNotCrash() throws {
         let app = XCUIApplication()
         app.launch()
